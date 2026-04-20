@@ -1241,40 +1241,43 @@
     </div>
 
     <!-- 美团 -->
-    <div style="display: grid; grid-template-columns: 160px 1fr 100px 160px; background: #FFF5F5; border-left: 4px solid #D92B2B;">
-      <div style="padding: 16px; display: flex; flex-direction: column; justify-content: center; gap: 6px;">
-        <div style="font-size: 13px; font-weight: 700; color: var(--meituan);">美团</div>
-        <div style="font-size: 11px; color: #C41A1A; font-family: 'Space Mono', monospace;">当前状态</div>
-        <div style="font-size: 18px; font-weight: 900; color: #D92B2B; margin-top: 4px; animation: pulse-red 1.5s infinite;">⚠ 尚未入场</div>
-      </div>
-      <div style="padding: 16px; border-left: 1px solid #FFCCCC; font-size: 13px; color: #333; line-height: 1.7;">
-        <div style="font-weight: 700; color: #C41A1A; margin-bottom: 10px;">五个维度全面落后，与国外大厂差距 3 年+</div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-          <div style="background: #fff; border: 1px solid #FFCCCC; padding: 8px 10px; border-radius: 4px;">
-            <div style="font-size: 10px; font-weight: 700; color: #C41A1A; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px;">岗位设立</div>
-            <div style="font-size: 12px; color: #555;">无 AX 相关岗位，无专项招募计划</div>
-          </div>
-          <div style="background: #fff; border: 1px solid #FFCCCC; padding: 8px 10px; border-radius: 4px;">
-            <div style="font-size: 10px; font-weight: 700; color: #C41A1A; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px;">人才培养</div>
-            <div style="font-size: 12px; color: #555;">无系统性 AX 转型培训，设计师自发学习</div>
-          </div>
-          <div style="background: #fff; border: 1px solid #FFCCCC; padding: 8px 10px; border-radius: 4px;">
-            <div style="font-size: 10px; font-weight: 700; color: #C41A1A; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px;">设计体系</div>
-            <div style="font-size: 12px; color: #555;">AI 规范雏形，尚未形成完整 AX 体系</div>
-          </div>
-          <div style="background: #fff; border: 1px solid #FFCCCC; padding: 8px 10px; border-radius: 4px;">
-            <div style="font-size: 10px; font-weight: 700; color: #C41A1A; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px;">产品覆盖</div>
-            <div style="font-size: 12px; color: #555;">Wow、AI 助手等产品缺乏 AX 设计支撑</div>
-          </div>
+    <div style="background: #FFF5F5; border-left: 4px solid #D92B2B; border-top: 1px solid #FFCCCC;">
+      <!-- 美团首行：公司 / 概述 / 成熟度 / 链接 -->
+      <div style="display: grid; grid-template-columns: 160px 1fr 100px 160px;">
+        <div style="padding: 16px 16px 8px; display: flex; flex-direction: column; justify-content: center; gap: 4px;">
+          <div style="font-size: 13px; font-weight: 700; color: var(--meituan);">美团</div>
+          <div style="font-size: 11px; color: #C41A1A; font-family: 'Space Mono', monospace;">当前状态</div>
+        </div>
+        <div style="padding: 16px 16px 8px; border-left: 1px solid #FFCCCC; display: flex; align-items: center;">
+          <div style="font-size: 13px; font-weight: 700; color: #C41A1A;">⚠ 尚未入场 — 五个维度全面落后，与国外大厂差距 3 年+</div>
+        </div>
+        <div style="padding: 16px 16px 8px; border-left: 1px solid #FFCCCC; display: flex; align-items: center; justify-content: center;">
+          <span style="display: inline-flex; align-items: center; gap: 5px; background: #FFE8E8; color: #D92B2B; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 4px;">
+            <span style="width: 6px; height: 6px; border-radius: 50%; background: #D92B2B; display: inline-block;"></span>不成熟
+          </span>
+        </div>
+        <div style="padding: 16px 16px 8px; border-left: 1px solid #FFCCCC; display: flex; align-items: center; justify-content: center;">
+          <span style="font-size: 12px; color: #C41A1A; font-family: 'Space Mono', monospace;">—</span>
         </div>
       </div>
-      <div style="padding: 16px; border-left: 1px solid #FFCCCC; display: flex; align-items: center; justify-content: center;">
-        <span style="display: inline-flex; align-items: center; gap: 5px; background: #FFE8E8; color: #D92B2B; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 4px;">
-          <span style="width: 6px; height: 6px; border-radius: 50%; background: #D92B2B; display: inline-block;"></span>不成熟
-        </span>
-      </div>
-      <div style="padding: 16px; border-left: 1px solid #FFCCCC; display: flex; align-items: center; justify-content: center;">
-        <span style="font-size: 12px; color: #C41A1A; font-family: 'Space Mono', monospace;">—</span>
+      <!-- 美团第二行：四格详情横跨全宽 -->
+      <div style="padding: 0 16px 16px 16px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+        <div style="background: #fff; border: 1px solid #FFCCCC; padding: 12px 14px; border-radius: 4px;">
+          <div style="font-size: 10px; font-weight: 700; color: #C41A1A; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px;">岗位设立</div>
+          <div style="font-size: 12px; color: #555; line-height: 1.6;">无 AX 相关岗位，无专项招募计划</div>
+        </div>
+        <div style="background: #fff; border: 1px solid #FFCCCC; padding: 12px 14px; border-radius: 4px;">
+          <div style="font-size: 10px; font-weight: 700; color: #C41A1A; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px;">人才培养</div>
+          <div style="font-size: 12px; color: #555; line-height: 1.6;">无系统性 AX 转型培训，设计师自发学习</div>
+        </div>
+        <div style="background: #fff; border: 1px solid #FFCCCC; padding: 12px 14px; border-radius: 4px;">
+          <div style="font-size: 10px; font-weight: 700; color: #C41A1A; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px;">设计体系</div>
+          <div style="font-size: 12px; color: #555; line-height: 1.6;">AI 规范雏形，尚未形成完整 AX 体系</div>
+        </div>
+        <div style="background: #fff; border: 1px solid #FFCCCC; padding: 12px 14px; border-radius: 4px;">
+          <div style="font-size: 10px; font-weight: 700; color: #C41A1A; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px;">产品覆盖</div>
+          <div style="font-size: 12px; color: #555; line-height: 1.6;">Wow、AI 助手等产品缺乏 AX 设计支撑</div>
+        </div>
       </div>
     </div>
 

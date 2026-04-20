@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AX 人才建设：美团 vs 大厂差距</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap');
+
+  :root {
+    --red: #D92B2B;
+    --red-dim: #D92B2B18;
+    --yellow: #E6A800;
+    --green: #0A8A4A;
+    --blue: #1A5FD4;
+    --bg: #FFFFFF;
+    --bg2: #F7F7FA;
+    --bg3: #EFEFF4;
+    --border: #00000010;
+    --text: #111118;
+    --text-dim: #666;
+    --meituan: #FF6900;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #EDEDF2;
+    color: var(--text);
+    font-family: 'Noto Serif SC', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .page-wrap {
+    max-width: 1100px;
+    margin: 40px auto;
+    background: #fff;
+    box-shadow: 0 4px 40px #00000014;
+    border-top: 3px solid #C41A1A;
+    overflow: hidden;
+  }
+
+  /* ── LINKS ── */
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+    opacity: 0.85;
+  }
+  .ext-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: #1A5FD4;
+    font-size: 11px;
+    font-family: 'Space Mono', monospace;
+    border-bottom: 1px solid #1A5FD430;
+    padding-bottom: 1px;
+    transition: border-color 0.2s, opacity 0.2s;
+  }
+  .ext-link:hover {
+    border-color: #1A5FD4;
+    text-decoration: none;
+    opacity: 0.8;
+  }
+  .ext-link::after {
+    content: '↗';
+    font-size: 9px;
+    opacity: 0.6;
+  }
+  .link-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    background: #EEF4FF;
+    border: 1px solid #C0D4F8;
+    border-radius: 2px;
+    color: #1A5FD4;
+    font-size: 10px;
+    font-family: 'Space Mono', monospace;
+    margin-top: 6px;
+    margin-right: 4px;
+    transition: background 0.2s;
+  }
+  .link-tag:hover {
+    background: #D8E8FF;
+    text-decoration: none;
+  }
+  .link-tag::after {
+    content: '↗';
+    font-size: 8px;
+    opacity: 0.5;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    padding: 64px 60px 52px;
+    border-bottom: 2px solid #EBEBF0;
+    overflow: hidden;
+    background: #FFFFFF;
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 55% 70% at 95% 30%, #C41A1A09 0%, transparent 65%),
+      radial-gradient(ellipse 35% 50% at 5% 90%, #FF690008 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    right: -20px; top: 50%;
+    transform: translateY(-50%);
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    border: 50px solid #C41A1A05;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #FFF0F0;
+    display: inline-flex;
+    padding: 6px 14px;
+    border: 1px solid #F0C0C0;
+    border-radius: 2px;
+  }
+  .hero-eyebrow::before {
+    content: '●';
+    font-size: 6px;
+    color: var(--red);
+    animation: pulse-red 1.5s ease-in-out infinite;
+  }
+
+  .hero-title {
+    font-size: clamp(38px, 5vw, 66px);
+    font-weight: 900;
+    line-height: 1.12;
+    letter-spacing: -2px;
+    margin-bottom: 24px;
+    color: #0D0D18;
+  }
+  .hero-title em {
+    font-style: normal;
+    color: #C41A1A;
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(180deg, transparent 55%, #C41A1A1A 55%);
+    padding: 0 2px;
+  }
+  .hero-title em::after {
+    content: '';
+    position: absolute;
+    bottom: 2px; left: 0; right: 0;
+    height: 3px;
+    background: #C41A1A;
+    opacity: 0.35;
+    border-radius: 2px;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    color: #3A3A4A;
+    max-width: 600px;
+    line-height: 1.9;
+    border-left: 3px solid #E8B0B0;
+    padding-left: 16px;
+  }
+
+  .hero-meta {
+    margin-top: 32px;
+    display: flex;
+    gap: 32px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: #999;
+    padding-top: 24px;
+    border-top: 1px solid #E8E8EE;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .hero-meta span { color: #333; font-weight: 700; }
+
+  /* ── SECTIONS ── */
+  .section {
+    padding: 52px 60px;
+    border-bottom: 1px solid #EBEBF0;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: #AAAABC;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-weight: 700;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #00000014;
+  }
+
+  /* ── URGENCY BANNER ── */
+  .urgency-banner {
+    background: #FFF8F8;
+    border: 1px solid #EEC0C0;
+    border-left: 5px solid #C41A1A;
+    padding: 22px 28px;
+    margin-bottom: 44px;
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+  }
+  .urgency-icon {
+    font-size: 32px;
+    flex-shrink: 0;
+  }
+  .urgency-text strong {
+    display: block;
+    font-size: 16px;
+    color: #B01E1E;
+    margin-bottom: 6px;
+    font-weight: 900;
+  }
+  .urgency-text p {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.75;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline-wrap {
+    position: relative;
+    padding-left: 32px;
+  }
+  .timeline-wrap::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px; bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--red), #D92B2B22);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 28px;
+    padding-left: 24px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -38px; top: 8px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    border: 2px solid var(--red);
+    background: #fff;
+  }
+  .timeline-item.active::before {
+    background: var(--red);
+    box-shadow: 0 0 8px #D92B2B55;
+  }
+  .timeline-item.meituan::before {
+    border-color: var(--meituan);
+    background: #fff;
+  }
+
+  .tl-year {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: #C41A1A;
+    margin-bottom: 5px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .timeline-item.meituan .tl-year { color: var(--meituan); }
+
+  .tl-company {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #111;
+  }
+  .tl-desc {
+    font-size: 12.5px;
+    color: #555;
+    line-height: 1.75;
+  }
+  .tl-tag {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 2px 10px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    border-radius: 2px;
+  }
+  .tl-tag.done { background: #E6F7EF; color: #0A7A42; border: 1px solid #0A8A4A33; }
+  .tl-tag.wip  { background: #FFF8E0; color: #9A6E00; border: 1px solid #E6A80044; }
+  .tl-tag.none { background: #FFECEC; color: var(--red); border: 1px solid #D92B2B33; }
+
+  /* ── COMPARISON GRID ── */
+  .cmp-grid {
+    display: grid;
+    grid-template-columns: 160px 1fr 1fr 1fr;
+    gap: 1px;
+    background: #DCDCE4;
+    border: 1px solid #DCDCE4;
+    overflow: hidden;
+    box-shadow: 0 2px 16px #00000008;
+  }
+
+  .cmp-cell {
+    background: #fff;
+    padding: 16px 18px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .cmp-cell.header {
+    background: #EEEEF4;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    padding: 14px 18px;
+  }
+  .cmp-cell.row-label {
+    background: #F4F4F8;
+    font-size: 12px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+  .cmp-cell.highlight-red { background: #FFF5F5; border-left: 2px solid #F0C0C0; }
+  .cmp-cell.highlight-orange { background: #FFF8F2; }
+
+  .dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dot-green { background: #0A8A4A; }
+  .dot-yellow { background: #E6A800; }
+  .dot-red { background: var(--red); }
+  .dot-orange { background: var(--meituan); }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    border-radius: 2px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .pill-green { background: #E6F7EF; color: #0A7A42; border: 1px solid #0A8A4A30; }
+  .pill-yellow { background: #FFF8E0; color: #9A6E00; border: 1px solid #E6A80030; }
+  .pill-red { background: #FFECEC; color: var(--red); border: 1px solid #D92B2B30; }
+  .pill-orange { background: #FFF3E8; color: var(--meituan); border: 1px solid #FF690030; }
+
+  /* ── JD COUNT BARS ── */
+  .bar-section { margin-top: 8px; }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .bar-label {
+    width: 80px;
+    font-size: 12px;
+    color: #444;
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+  .bar-track {
+    flex: 1;
+    height: 8px;
+    background: #EBEBF0;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    position: relative;
+    transition: width 1s ease;
+  }
+  .bar-fill::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: inherit;
+    filter: brightness(0.85);
+    border-radius: 2px;
+  }
+  .bar-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    width: 40px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .bar-link {
+    width: 60px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  /* ── MATURITY CARDS ── */
+  .maturity-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: #DCDCE4;
+    border: 1px solid #DCDCE4;
+    overflow: hidden;
+  }
+  .maturity-card {
+    background: #fff;
+    padding: 24px 22px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+  .maturity-card:hover { background: #FAFAFA; }
+  .maturity-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+  }
+  .maturity-card.m-green::before { background: linear-gradient(90deg, #0A8A4A, #34C77A); }
+  .maturity-card.m-yellow::before { background: linear-gradient(90deg, #C88A00, #E6A800); }
+  .maturity-card.m-red::before { background: linear-gradient(90deg, #D92B2B, #FF6060); }
+
+  .maturity-company {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #AAA;
+    margin-bottom: 14px;
+  }
+  .maturity-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 14px 5px 10px;
+    border-radius: 2px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+  }
+  .badge-green  { background: #E6F7EF; color: #0A7A42; border: 1px solid #0A8A4A30; }
+  .badge-yellow { background: #FFF8E0; color: #9A6E00; border: 1px solid #E6A80040; }
+  .badge-red    { background: #FFECEC; color: #C41A1A; border: 1px solid #D92B2B30; }
+  .maturity-badge .badge-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .badge-green  .badge-dot { background: #0A8A4A; }
+  .badge-yellow .badge-dot { background: #C88A00; }
+  .badge-red    .badge-dot { background: #C41A1A; animation: pulse-red 2s ease-in-out infinite; }
+
+  .maturity-desc {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.75;
+    margin-bottom: 12px;
+  }
+  /* meituan full-row card */
+  .maturity-card.m-meituan {
+    grid-column: 1 / -1;
+    background: #FFF8F8;
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    border-top: 1px solid #F0C0C0;
+  }
+  .maturity-card.m-meituan::before {
+    background: linear-gradient(90deg, #D92B2B, #FF6060);
+  }
+  .meituan-left {
+    flex-shrink: 0;
+    text-align: center;
+    padding-right: 36px;
+    border-right: 1px solid #F0C0C0;
+  }
+  .meituan-verdict {
+    font-family: 'Space Mono', monospace;
+    font-size: 22px;
+    font-weight: 700;
+    color: #C41A1A;
+    letter-spacing: -0.5px;
+    margin: 10px 0 6px;
+    line-height: 1.2;
+  }
+  .meituan-right {
+    flex: 1;
+  }
+  .meituan-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .meituan-detail-item {
+    background: #FFECEC;
+    padding: 10px 14px;
+    border-left: 3px solid #C41A1A;
+  }
+  .meituan-detail-dim {
+    font-size: 10px;
+    color: #C41A1A;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .meituan-detail-val {
+    font-size: 12px;
+    color: #333;
+  }
+
+  /* ── DIFF SECTION ── */
+  .diff-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .diff-card {
+    border: 1px solid #E4E4EC;
+    padding: 20px 22px;
+    background: #FAFAFA;
+    position: relative;
+  }
+  .diff-card.them {
+    border-left: 3px solid #0A8A4A;
+    background: #F6FBF8;
+  }
+  .diff-card.us {
+    border-left: 3px solid #C41A1A;
+    background: #FFF8F8;
+  }
+  .diff-card-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .diff-card.them .diff-card-title { color: #0A8A4A; }
+  .diff-card.us .diff-card-title { color: #C41A1A; }
+  .diff-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    line-height: 1.65;
+    color: #333;
+  }
+  .diff-item-icon {
+    flex-shrink: 0;
+    font-size: 14px;
+    margin-top: 1px;
+  }
+
+  /* ── CALL TO ACTION ── */
+  .cta-section {
+    padding: 72px 60px 64px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background: #F8F8FB;
+    border-top: 2px solid #E4E4EC;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, #D92B2B08 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-title {
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: #0D0D18;
+    letter-spacing: -1px;
+  }
+  .cta-title em {
+    font-style: normal;
+    color: var(--red);
+  }
+  .cta-sub {
+    font-size: 14px;
+    color: #555;
+    max-width: 520px;
+    margin: 0 auto 40px;
+    line-height: 1.9;
+  }
+  .cta-stats {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+    border: 1px solid #E8D0D0;
+    background: #fff;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 2px 16px #C41A1A0A;
+  }
+  .cta-stat {
+    flex: 1;
+    min-width: 120px;
+    padding: 24px 20px;
+    border-right: 1px solid #E8D0D0;
+    text-align: center;
+  }
+  .cta-stat:last-child { border-right: none; }
+  .cta-stat-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 36px;
+    font-weight: 700;
+    color: #C41A1A;
+    display: block;
+    letter-spacing: -1px;
+  }
+  .cta-stat-label {
+    font-size: 11px;
+    color: #888;
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+
+  /* ── SOURCE FOOTER ── */
+  .source-footer {
+    padding: 28px 60px;
+    background: #F4F4F8;
+    border-top: 1px solid #E0E0EA;
+  }
+  .source-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: #AAAABC;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+  .source-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+  }
+  .source-item {
+    font-size: 11px;
+    color: #888;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .source-item a {
+    color: #1A5FD4;
+    border-bottom: 1px solid #1A5FD430;
+  }
+  .source-item a:hover {
+    border-color: #1A5FD4;
+    text-decoration: none;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes pulse-red {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .pulse { animation: pulse-red 2s ease-in-out infinite; }
+
+  @keyframes slide-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-in { animation: slide-in 0.6s ease forwards; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">AX 人才建设竞争态势报告 · 2026</div>
+    <h1 class="hero-title">
+      当世界已在<em>争夺 AX 人才</em><br>美团还没有这个岗位
+    </h1>
+    <p class="hero-sub">
+      国外大厂已完成 AX 专项岗位布局，国内大厂正在加速招募 AI 方向设计师。
+      美团尚未设立 AX 岗位，也未启动系统性人才建设——这个窗口期正在关闭。
+    </p>
+    <div class="hero-meta">
+      <span>数据来源：各大厂官方招聘平台 · 设计指南 · 行业报告</span>
+      &nbsp;|&nbsp; 整理时间：<span>2026.04</span>
+      &nbsp;|&nbsp;
+      <a class="ext-link" href="https://johnmaeda.medium.com/design-in-tech-report-2026-from-ux-to-ax-f9d83164f4d2" target="_blank">前田约翰《Design in Tech 2026》</a>
+      &nbsp;
+      <a class="ext-link" href="https://www.francescatabor.com/articles/2025/2/8/the-future-of-ux-transitioning-from-ux-designer-to-ai-agent-experience-ax-designer" target="_blank">UX→AX 转型分析</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECTION 1 — 紧迫感 Banner + 招聘数据
+══════════════════════════════════════════ -->
+<section class="section" id="s1">
+  <div class="section-label">01 — 现状警示</div>
+
+  <div class="urgency-banner">
+    <div class="urgency-icon pulse">⚠️</div>
+    <div class="urgency-text">
+      <strong>AX 人才争夺战已经打响，美团尚未入场</strong>
+      <p>
+        Google DeepMind 已开放多个 Staff AI Product Designer 岗位（薪资 $224k–$315k）；Salesforce 设立 AX 架构师职级；
+        Microsoft 将 AX 纳入核心设计战略并发布完整设计指南。国内字节、腾讯、阿里正以 25–60k 薪资抢人。
+        美团 AI 产品线持续扩张，但设计侧的 AX 能力建设几乎空白。
+      </p>
+    </div>
+  </div>
+
+  <!-- JD 数量对比 -->
+  <div style="margin-bottom: 12px; font-size: 13px; color: #666; font-weight: 500;">
+    各公司当前 AI 体验设计相关在招岗位数量（附官方链接）
+  </div>
+  <div class="bar-section">
+    <div class="bar-row">
+      <div class="bar-label">Google</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:90%; background: linear-gradient(90deg, #4285F4, #34A853);"></div>
+      </div>
+      <div class="bar-num" style="color:#4285F4">4+</div>
+      <div class="bar-link">
+        <a class="ext-link" href="https://job-boards.greenhouse.io/deepmind/jobs/7762107" target="_blank">JD</a>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Salesforce</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:75%; background: linear-gradient(90deg, #00A1E0, #0070D2);"></div>
+      </div>
+      <div class="bar-num" style="color:#00A1E0">3+</div>
+      <div class="bar-link">
+        <a class="ext-link" href="https://careers.salesforce.com/en/jobs/jr304048/ux-systems-architect-agentforce-ux-platform/" target="_blank">JD</a>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Microsoft</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:60%; background: linear-gradient(90deg, #00BCF2, #0078D4);"></div>
+      </div>
+      <div class="bar-num" style="color:#00BCF2">2+</div>
+      <div class="bar-link">
+        <a class="ext-link" href="https://careers.microsoft.com/us/en/search-results?keywords=UX+designer+AI" target="_blank">JD</a>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">字节跳动</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:55%; background: linear-gradient(90deg, #E6A800, #FF7A00);"></div>
+      </div>
+      <div class="bar-num" style="color:#C88A00">2+</div>
+      <div class="bar-link">
+        <a class="ext-link" href="https://cn.linkedin.com/jobs/view/ux%E8%AE%BE%E8%AE%A1%E5%B8%88-ai%E5%88%9B%E6%96%B0%E4%B8%9A%E5%8A%A1-at-bytedance-4285414091" target="_blank">JD</a>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">腾讯</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:45%; background: linear-gradient(90deg, #E6A800, #FF7A00);"></div>
+      </div>
+      <div class="bar-num" style="color:#C88A00">2+</div>
+      <div class="bar-link">
+        <a class="ext-link" href="https://careers.tencent.com/search.html?pcid=40001" target="_blank">JD</a>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">阿里巴巴</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:35%; background: linear-gradient(90deg, #E6A800, #FF7A00);"></div>
+      </div>
+      <div class="bar-num" style="color:#C88A00">1+</div>
+      <div class="bar-link">
+        <a class="ext-link" href="https://talent.dingtalk.com/off-campus/position-detail?lang=zh&positionId=7000042520" target="_blank">JD</a>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label" style="color:var(--red); font-weight:700">美团</div>
+      <div class="bar-track" style="background:#FFE8E8;">
+        <div class="bar-fill" style="width:0%; background: var(--red);"></div>
+      </div>
+      <div class="bar-num pulse" style="color:var(--red); font-weight:700">0</div>
+      <div class="bar-link" style="font-size:10px; color:#C41A1A; font-family:'Space Mono',monospace;">—</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECTION 2 — 时间线
+══════════════════════════════════════════ -->
+<section class="section" id="s2">
+  <div class="section-label">02 — AX 岗位建设时间线</div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0; background: #F4F4F8; border: 1px solid #E0E0EA; overflow: hidden;">
+    <div style="padding: 32px; border-right: 1px solid #E0E0EA;">
+      <div style="font-size: 11px; color: #888; margin-bottom: 24px; font-family: 'Space Mono', monospace; letter-spacing: 2px; font-weight:700; text-transform:uppercase;">🌍 国外大厂</div>
+      <div class="timeline-wrap">
+        <div class="timeline-item active">
+          <div class="tl-year">2023</div>
+          <div class="tl-company">Microsoft</div>
+          <div class="tl-desc">设立 Principal Accessibility Designer，成为最早的 AX 专项岗模板；发布《UX Design for Agents》设计指南；前田约翰（现任微软设计与 AI 副总裁）推动 AX 战略</div>
+          <div style="margin-top:8px; display:flex; flex-wrap:wrap; gap:4px;">
+            <a class="link-tag" href="https://learn.microsoft.com/en-us/microsoft-cloud/dev/copilot/isv/ux-guidance" target="_blank">UX for AI 指南</a>
+            <a class="link-tag" href="https://fluent2.microsoft.design/get-started/design" target="_blank">Fluent 2 设计系统</a>
+          </div>
+          <span class="tl-tag done">已落地</span>
+        </div>
+        <div class="timeline-item active">
+          <div class="tl-year">2024</div>
+          <div class="tl-company">Salesforce</div>
+          <div class="tl-desc">开放 UX Systems Architect - Agentforce UX Platform，架构级 AX 岗位；同步设立 Ethical AI Tooling UX Engineer；发布 Agentforce 设计体系</div>
+          <div style="margin-top:8px; display:flex; flex-wrap:wrap; gap:4px;">
+            <a class="link-tag" href="https://careers.salesforce.com/en/jobs/jr304048/ux-systems-architect-agentforce-ux-platform/" target="_blank">AX Architect JD</a>
+            <a class="link-tag" href="https://www.salesforce.com/design/" target="_blank">Salesforce Design</a>
+          </div>
+          <span class="tl-tag done">已落地</span>
+        </div>
+        <div class="timeline-item active">
+          <div class="tl-year">2025</div>
+          <div class="tl-company">Google DeepMind</div>
+          <div class="tl-desc">集中开放多个 Staff AI Product Designer 岗位（$224k–$315k），覆盖 Gemini 全产品线；前田约翰发布《Design in Tech 2025》，正式提出 AX 概念</div>
+          <div style="margin-top:8px; display:flex; flex-wrap:wrap; gap:4px;">
+            <a class="link-tag" href="https://job-boards.greenhouse.io/deepmind/jobs/7762107" target="_blank">Staff AI Designer JD</a>
+            <a class="link-tag" href="https://pair.withgoogle.com/guidebook/" target="_blank">PAIR Guidebook</a>
+            <a class="link-tag" href="https://developer.apple.com/design/human-interface-guidelines/generative-ai/" target="_blank">Apple HIG Gen AI</a>
+          </div>
+          <span class="tl-tag done">已落地</span>
+        </div>
+        <div class="timeline-item active">
+          <div class="tl-year">2026</div>
+          <div class="tl-company">全行业</div>
+          <div class="tl-desc">前田约翰发布《Design in Tech 2026: From UX to AX》，AX 设计师成为 AI 产品标配角色，国外大厂 AX 团队规模化扩张</div>
+          <div style="margin-top:8px; display:flex; flex-wrap:wrap; gap:4px;">
+            <a class="link-tag" href="https://johnmaeda.medium.com/design-in-tech-report-2026-from-ux-to-ax-f9d83164f4d2" target="_blank">Design in Tech 2026</a>
+            <a class="link-tag" href="https://designintech.report/" target="_blank">历年报告</a>
+          </div>
+          <span class="tl-tag done">进行中</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding: 32px;">
+      <div style="font-size: 11px; color: #888; margin-bottom: 24px; font-family: 'Space Mono', monospace; letter-spacing: 2px; font-weight:700; text-transform:uppercase;">🇨🇳 国内大厂 + 美团</div>
+      <div class="timeline-wrap" style="border-left-color: var(--yellow);">
+        <div class="timeline-item active" style="">
+          <div class="tl-year" style="color: var(--yellow);">2024</div>
+          <div class="tl-company">字节跳动</div>
+          <div class="tl-desc">开始招募 UX设计师-AI创新业务，薪资 25–55k·15薪，明确要求 AI 产品交互设计经验；阿里发布 Ant Design X AI 组件库</div>
+          <div style="margin-top:8px; display:flex; flex-wrap:wrap; gap:4px;">
+            <a class="link-tag" href="https://cn.linkedin.com/jobs/view/ux%E8%AE%BE%E8%AE%A1%E5%B8%88-ai%E5%88%9B%E6%96%B0%E4%B8%9A%E5%8A%A1-at-bytedance-4285414091" target="_blank">字节 AI UX JD</a>
+            <a class="link-tag" href="https://github.com/ant-design/x" target="_blank">Ant Design X</a>
+          </div>
+          <span class="tl-tag wip">招募中</span>
+        </div>
+        <div class="timeline-item active">
+          <div class="tl-year" style="color: var(--yellow);">2025</div>
+          <div class="tl-company">腾讯 / 阿里</div>
+          <div class="tl-desc">腾讯开放产品设计师（AI驱动方向），30–60k·15薪；腾讯发布 TDesign Chat AI 组件库；阿里钉钉招募体验设计师-AI产品方向；阿里校招开放 AI 体验设计师岗位</div>
+          <div style="margin-top:8px; display:flex; flex-wrap:wrap; gap:4px;">
+            <a class="link-tag" href="https://tdesign.tencent.com/chat/overview" target="_blank">TDesign Chat</a>
+            <a class="link-tag" href="https://talent.dingtalk.com/off-campus/position-detail?lang=zh&positionId=7000042520" target="_blank">钉钉 AI 设计师 JD</a>
+            <a class="link-tag" href="https://campus-talent.alibaba.com/campus/position/199903240014" target="_blank">阿里 AI 体验设计师</a>
+          </div>
+          <span class="tl-tag wip">招募中</span>
+        </div>
+        <div class="timeline-item meituan">
+          <div class="tl-year" style="color: var(--meituan);">2026 · 现在</div>
+          <div class="tl-company" style="color: var(--meituan);">美团</div>
+          <div class="tl-desc">AI 产品线持续扩张（Wow、AI助手、智能客服等），但设计侧尚未设立 AX 专项岗位，无系统性 AX 人才培养计划，无 AI 设计组件规范</div>
+          <span class="tl-tag none">尚未启动</span>
+        </div>
+        <div class="timeline-item meituan" style="opacity: 0.5;">
+          <div class="tl-year" style="color: var(--meituan);">2026 → ?</div>
+          <div class="tl-company" style="color: var(--meituan);">美团</div>
+          <div class="tl-desc">若继续等待，AX 人才市场将被竞争对手锁定，内部设计师转型窗口期关闭</div>
+          <span class="tl-tag none">风险窗口</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECTION 3 — 能力对比矩阵
+══════════════════════════════════════════ -->
+<section class="section" id="s3">
+  <div class="section-label">03 — AX 建设能力矩阵对比</div>
+
+  <div class="cmp-grid">
+    <!-- Header row -->
+    <div class="cmp-cell header">维度</div>
+    <div class="cmp-cell header">
+      <span class="dot dot-green"></span>国外大厂<br><span style="color:#999; font-size:9px;">Google / MS / Salesforce</span>
+    </div>
+    <div class="cmp-cell header">
+      <span class="dot dot-yellow"></span>国内大厂<br><span style="color:#999; font-size:9px;">字节 / 腾讯 / 阿里</span>
+    </div>
+    <div class="cmp-cell header highlight-orange">
+      <span class="dot dot-orange"></span>美团<br><span style="color:#999; font-size:9px;">当前状态</span>
+    </div>
+
+    <!-- Row 1 -->
+    <div class="cmp-cell row-label">专项岗位</div>
+    <div class="cmp-cell">
+      <span class="status-pill pill-green">✓ 已设立</span>
+      <div style="margin-top:8px; font-size:12px; color:#555;">Staff AI Product Designer、AX Architect 等专属职级，薪资 $224k–$315k</div>
+      <div style="margin-top:8px;">
+        <a class="link-tag" href="https://job-boards.greenhouse.io/deepmind/jobs/7762107" target="_blank">Google JD</a>
+        <a class="link-tag" href="https://careers.salesforce.com/en/jobs/jr304048/ux-systems-architect-agentforce-ux-platform/" target="_blank">Salesforce JD</a>
+      </div>
+    </div>
+    <div class="cmp-cell">
+      <span class="status-pill pill-yellow">⟳ 招募中</span>
+      <div style="margin-top:8px; font-size:12px; color:#555;">以 AI 方向 UX 设计师为主，尚未独立 AX 职级，薪资 25–60k·15薪</div>
+      <div style="margin-top:8px;">
+        <a class="link-tag" href="https://cn.linkedin.com/jobs/view/ux%E8%AE%BE%E8%AE%A1%E5%B8%88-ai%E5%88%9B%E6%96%B0%E4%B8%9A%E5%8A%A1-at-bytedance-4285414091" target="_blank">字节 JD</a>
+        <a class="link-tag" href="https://talent.dingtalk.com/off-campus/position-detail?lang=zh&positionId=7000042520" target="_blank">钉钉 JD</a>
+      </div>
+    </div>
+    <div class="cmp-cell highlight-red">
+      <span class="status-pill pill-red">✗ 空白</span>
+      <div style="margin-top:8px; font-size:12px; color:#555;">无 AX 相关岗位，无专项招募计划，优秀设计师面临流失风险</div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="cmp-cell row-label">设计指南</div>
+    <div class="cmp-cell">
+      <span class="status-pill pill-green">✓ 已发布</span>
+      <div style="margin-top:8px; font-size:12px; color:#555;">Google PAIR Guidebook、Microsoft UX for Agents、Apple HIG Generative AI，均为公开完整体系</div>
+      <div style="margin-top:8px;">
+        <a class="link-tag" href="https://pair.withgoogle.com/guidebook/" target="_blank">PAIR Guidebook</a>
+        <a class="link-tag" href="https://learn.microsoft.com/en-us/microsoft-cloud/dev/copilot/isv/ux-guidance" target="_blank">MS UX 指南</a>
+        <a class="link-tag" href="https://developer.apple.com/design/human-interface-guidelines/generative-ai/" target="_blank">Apple HIG</a>
+      </div>
+    </div>
+    <div class="cmp-cell">
+      <span class="status-pill pill-yellow">⟳ 建设中</span>
+      <div style="margin-top:8px; font-size:12px; color:#555;">阿里 Ant Design X、腾讯 TDesign Chat 已发布 AI 组件规范，但设计原则层面仍在完善</div>
+      <div style="margin-top:8px;">
+        <a class="link-tag" href="https://github.com/ant-design/x" target="_blank">Ant Design X</a>
+        <a class="link-tag" href="https://tdesign.tencent.com/chat/overview" target="_blank">TDesign Chat</a>
+      </div>
+    </div>
+    <div class="cmp-cell highlight-red">
+      <span class="status-pill pill-orange">△ 初步</span>
+      <div style="margin-top:8px; font-size:12px; color:#555;">美团 AI 一致性规范已有雏形，但尚未形成完整 AX 设计体系，无公开设计指南</div>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="cmp-cell row-label">人才培养</div>
+    <div class="cmp-cell">
+      <span class="status-pill pill-green">✓ 体系化</span>
+      <div style="margin-top:8px; font-size:12px; color:#555;">内部 AX 设计师培训体系，外部设计报告输出行业影响力；前田约翰连续 11 年发布 Design in Tech Report</div>
+      <div style="margin-top:8px;">
+        <a class="link-tag" href="https://designintech.report/" target="_blank">Design in Tech Report</a>
+      </div>
+    </div>
+    <div class="cmp-cell">
+      <span class="status-pill pill-yellow">⟳ 探索中</span>
+      <div style="margin-top:8px; font-size:12px; color:#555;">通过外部招募补充 AI 设计能力，内部转型培训尚在摸索，缺乏系统性 AX 课程体系</div>
+    </div>
+    <div class="cmp-cell highlight-red">
+      <span class="status-pill pill-red">✗ 空白</span>
+      <div style="margin-top:8px; font-size:12px; color:#555;">无系统性 AX 转型培训，设计师自发学习为主，缺乏组织层面的能力建设路径</div>
+    </div>
+
+    <!-- Row 4 -->
+    <div class="cmp-cell row-label">薪资竞争力</div>
+    <div class="cmp-cell">
+      <span class="status-pill pill-green">✓ 顶级</span>
+      <div style="margin-top:8px; font-size:12px; color:#555;">Google Staff AI Designer $224k–$315k；Salesforce AX Architect 对应国内 P8+ 薪资水平</div>
+    </div>
+    <div class="cmp-cell">
+      <span class="status-pill pill-yellow">⟳ 积极</span>
+      <div style="margin-top:8px; font-size:12px; color:#555;">字节 25–55k·15薪，腾讯 30–60k·15薪，主动溢价抢人，形成市场竞争压力</div>
+    </div>
+    <div class="cmp-cell highlight-red">
+      <span class="status-pill pill-red">— 无参照</span>
+      <div style="margin-top:8px; font-size:12px; color:#555;">无 AX 岗位，无法形成薪资竞争力，优秀设计师面临被竞争对手挖角风险</div>
+    </div>
+
+    <!-- Row 5 -->
+    <div class="cmp-cell row-label">产品覆盖</div>
+    <div class="cmp-cell">
+      <span class="status-pill pill-green">✓ 全面</span>
+      <div style="margin-top:8px; font-size:12px; color:#555;">Gemini、Copilot、Agentforce 等核心 AI 产品均有专属 AX 设计师，从 0→1 全程参与</div>
+    </div>
+    <div class="cmp-cell">
+      <span class="status-pill pill-yellow">⟳ 扩展中</span>
+      <div style="margin-top:8px; font-size:12px; color:#555;">抖音 AI、飞书 AI、钉钉 AI、通义千问 C 端等产品线逐步配置 AI 设计资源</div>
+    </div>
+    <div class="cmp-cell highlight-red">
+      <span class="status-pill pill-red">✗ 缺位</span>
+      <div style="margin-top:8px; font-size:12px; color:#555;">Wow、AI 助手、智能客服等 AI 产品缺乏专业 AX 设计支撑，体验质量难以保障</div>
+    </div>
+
+    <!-- Row 6 — 新增：AX 核心能力要求 -->
+    <div class="cmp-cell row-label">AX 核心能力</div>
+    <div class="cmp-cell">
+      <span class="status-pill pill-green">✓ 明确定义</span>
+      <div style="margin-top:8px; font-size:12px; color:#555;">JD 明确要求：Agent 行为设计、Prompt 工程、多模态交互、不确定性设计、AI 伦理</div>
+      <div style="margin-top:8px;">
+        <a class="link-tag" href="https://agentexperience.ax/research/ax-the-next-evolution-in-ux/" target="_blank">AX vs UX 差异</a>
+      </div>
+    </div>
+    <div class="cmp-cell">
+      <span class="status-pill pill-yellow">⟳ 摸索中</span>
+      <div style="margin-top:8px; font-size:12px; color:#555;">JD 要求 AI 产品经验，但 AX 专项能力框架尚未成型，多以传统 UX 能力为基础</div>
+    </div>
+    <div class="cmp-cell highlight-red">
+      <span class="status-pill pill-red">✗ 未定义</span>
+      <div style="margin-top:8px; font-size:12px; color:#555;">无 AX 能力框架，设计师不清楚需要掌握哪些 AI 时代的新技能，转型路径模糊</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECTION 4 — UX vs AX 核心差异（新增）
+══════════════════════════════════════════ -->
+<section class="section" id="s4-diff">
+  <div class="section-label">04 — UX 设计师 vs AX 设计师：核心能力差异</div>
+  <div style="font-size: 13px; color: #666; margin-bottom: 24px; line-height: 1.8;">
+    基于 Google PAIR、Microsoft、Salesforce 等大厂 JD 及前田约翰《Design in Tech 2026》整理，AX 设计师需要掌握的新能力维度：
+  </div>
+
+  <div class="diff-grid">
+    <div class="diff-card them">
+      <div class="diff-card-title">✓ 国外大厂 AX 设计师已具备</div>
+      <div class="diff-item">
+        <div class="diff-item-icon">🤖</div>
+        <div><strong>Agent 行为设计</strong>：设计 AI Agent 的决策逻辑、任务分解、错误恢复机制，而非仅设计界面</div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-item-icon">💬</div>
+        <div><strong>Prompt 工程能力</strong>：能直接编写和优化 System Prompt，理解 LLM 输出的不确定性</div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-item-icon">🎯</div>
+        <div><strong>意图对齐设计</strong>：从"设计路径"转向"设计意图理解"，让 Agent 准确捕捉用户真实需求</div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-item-icon">⚖️</div>
+        <div><strong>AI 伦理与信任设计</strong>：设计 AI 透明度、可解释性、用户控制权，Salesforce 专设 Ethical AI UX 岗位</div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-item-icon">🔄</div>
+        <div><strong>多模态交互设计</strong>：覆盖语音、视觉、文本、Agent 自主操作等多种交互模式的统一体验</div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-item-icon">📊</div>
+        <div><strong>不确定性体验设计</strong>：设计 AI 输出不稳定时的降级方案、置信度展示、用户预期管理</div>
+      </div>
+    </div>
+
+    <div class="diff-card us">
+      <div class="diff-card-title">✗ 美团设计师当前缺失</div>
+      <div class="diff-item">
+        <div class="diff-item-icon">❌</div>
+        <div><strong>无 Agent 设计方法论</strong>：设计师仍以传统"用户操作→界面响应"思维设计 AI 产品，缺乏 Agent 自主性设计框架</div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-item-icon">❌</div>
+        <div><strong>无 Prompt 设计能力</strong>：设计师与 AI 能力之间存在"翻译层"，无法直接参与 AI 体验的核心决策</div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-item-icon">❌</div>
+        <div><strong>缺乏意图设计思维</strong>：产品仍以"功能入口"为核心，而非以"用户意图"为核心重构交互逻辑</div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-item-icon">❌</div>
+        <div><strong>AI 伦理意识薄弱</strong>：无专项 AI 伦理设计规范，用户对 AI 决策的信任感和可控感设计缺失</div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-item-icon">❌</div>
+        <div><strong>多模态经验不足</strong>：设计师主要聚焦视觉界面，缺乏语音、Agent 自主操作等新交互模式的设计经验</div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-item-icon">❌</div>
+        <div><strong>无不确定性设计规范</strong>：AI 产品出错或输出不稳定时，缺乏统一的体验降级和用户预期管理方案</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 16px; padding: 16px 20px; background: #F0F4FF; border: 1px solid #C0D4F8; border-left: 4px solid #1A5FD4; font-size: 12.5px; color: #333; line-height: 1.8;">
+    📖 参考资料：
+    <a class="ext-link" href="https://pair.withgoogle.com/guidebook/" target="_blank" style="margin: 0 8px;">Google PAIR Guidebook</a>
+    <a class="ext-link" href="https://learn.microsoft.com/en-us/microsoft-cloud/dev/copilot/isv/ux-guidance" target="_blank" style="margin: 0 8px;">Microsoft UX for AI</a>
+    <a class="ext-link" href="https://agentexperience.ax/research/ax-the-next-evolution-in-ux/" target="_blank" style="margin: 0 8px;">AX: Next Evolution in UX</a>
+    <a class="ext-link" href="https://10clouds.com/blog/a-i/agentic-experience-ax-the-ux-of-agentic-ai-era/" target="_blank" style="margin: 0 8px;">Agentic Experience 完整指南</a>
+    <a class="ext-link" href="https://www.francescatabor.com/articles/2025/2/8/the-future-of-ux-transitioning-from-ux-designer-to-ai-agent-experience-ax-designer" target="_blank" style="margin: 0 8px;">UX→AX 转型路径</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECTION 5 — 成熟度概览
+══════════════════════════════════════════ -->
+<section class="section" id="s5">
+  <div class="section-label">05 — AX 建设成熟度概览</div>
+  <div style="font-size: 12px; color: #888; margin-bottom: 28px;">
+    评估维度：岗位设立 / 设计体系 / 人才培养 / 产品覆盖 / 行业影响力
+  </div>
+
+  <div class="maturity-grid">
+
+    <!-- Google -->
+    <div class="maturity-card m-green">
+      <div class="maturity-company">Google DeepMind</div>
+      <div class="maturity-badge badge-green"><span class="badge-dot"></span>成熟</div>
+      <div class="maturity-desc">多个 Staff AI Product Designer 岗位，PAIR Guidebook 完整体系，Gemini 全产品线 AX 覆盖，行业标杆</div>
+      <a class="link-tag" href="https://pair.withgoogle.com/guidebook/" target="_blank">PAIR 指南</a>
+      <a class="link-tag" href="https://deepmind.google/careers/" target="_blank">招聘页</a>
+    </div>
+
+    <!-- Salesforce -->
+    <div class="maturity-card m-green">
+      <div class="maturity-company">Salesforce</div>
+      <div class="maturity-badge badge-green"><span class="badge-dot"></span>成熟</div>
+      <div class="maturity-desc">AX 架构师独立职级，Agentforce 设计体系，Ethical AI UX 专项岗，最早完成系统性布局</div>
+      <a class="link-tag" href="https://careers.salesforce.com/en/jobs/jr304048/ux-systems-architect-agentforce-ux-platform/" target="_blank">AX Architect JD</a>
+      <a class="link-tag" href="https://www.salesforce.com/design/" target="_blank">设计体系</a>
+    </div>
+
+    <!-- Microsoft -->
+    <div class="maturity-card m-green">
+      <div class="maturity-company">Microsoft</div>
+      <div class="maturity-badge badge-green"><span class="badge-dot"></span>成熟</div>
+      <div class="maturity-desc">UX for Agents 设计指南公开发布，Fluent 2 AI 组件体系，Copilot 全线 AX 设计师配置，前田约翰战略背书</div>
+      <a class="link-tag" href="https://learn.microsoft.com/en-us/microsoft-cloud/dev/copilot/isv/ux-guidance" target="_blank">UX 指南</a>
+      <a class="link-tag" href="https://fluent2.microsoft.design/get-started/design" target="_blank">Fluent 2</a>
+    </div>
+
+    <!-- 字节 -->
+    <div class="maturity-card m-yellow">
+      <div class="maturity-company">字节跳动</div>
+      <div class="maturity-badge badge-yellow"><span class="badge-dot"></span>良好</div>
+      <div class="maturity-desc">积极招募 AI UX 设计师，薪资溢价明显（25–55k·15薪），但尚未建立独立 AX 职级与系统性培养体系</div>
+      <a class="link-tag" href="https://cn.linkedin.com/jobs/view/ux%E8%AE%BE%E8%AE%A1%E5%B8%88-ai%E5%88%9B%E6%96%B0%E4%B8%9A%E5%8A%A1-at-bytedance-4285414091" target="_blank">AI UX JD</a>
+    </div>
+
+    <!-- 腾讯 -->
+    <div class="maturity-card m-yellow">
+      <div class="maturity-company">腾讯</div>
+      <div class="maturity-badge badge-yellow"><span class="badge-dot"></span>良好</div>
+      <div class="maturity-desc">TDesign Chat AI 组件库已发布，AI 设计师招募中（30–60k·15薪），设计原则层面仍在完善</div>
+      <a class="link-tag" href="https://tdesign.tencent.com/chat/overview" target="_blank">TDesign Chat</a>
+      <a class="link-tag" href="https://careers.tencent.com/search.html?pcid=40001" target="_blank">招聘页</a>
+    </div>
+
+    <!-- 阿里 -->
+    <div class="maturity-card m-yellow">
+      <div class="maturity-company">阿里巴巴</div>
+      <div class="maturity-badge badge-yellow"><span class="badge-dot"></span>良好</div>
+      <div class="maturity-desc">Ant Design X AI 组件库开源，钉钉 AI 体验设计师招募中，整体布局分散，尚未形成统一 AX 战略</div>
+      <a class="link-tag" href="https://github.com/ant-design/x" target="_blank">Ant Design X</a>
+      <a class="link-tag" href="https://talent.dingtalk.com/off-campus/position-detail?lang=zh&positionId=7000042520" target="_blank">钉钉 JD</a>
+    </div>
+
+    <!-- 美团 全行 -->
+    <div class="maturity-card m-red m-meituan">
+      <div class="meituan-left">
+        <div class="maturity-company" style="color: var(--meituan);">美团 · 当前状态</div>
+        <div class="maturity-badge badge-red" style="margin-bottom:8px;"><span class="badge-dot"></span>不成熟</div>
+        <div class="meituan-verdict pulse">⚠ 尚未入场</div>
+        <div style="font-size:11px; color:#C41A1A; margin-top:6px; font-family:'Space Mono',monospace;">与国外大厂差距 3 年+</div>
+      </div>
+      <div class="meituan-right">
+        <div style="font-size:13px; font-weight:700; color:#C41A1A; margin-bottom:12px;">美团 AX 建设处于起点阶段，五个维度全面落后</div>
+        <div class="meituan-detail-grid">
+          <div class="meituan-detail-item">
+            <div class="meituan-detail-dim">岗位设立</div>
+            <div class="meituan-detail-val">无 AX 相关岗位，无专项招募计划</div>
+          </div>
+          <div class="meituan-detail-item">
+            <div class="meituan-detail-dim">人才培养</div>
+            <div class="meituan-detail-val">无系统性 AX 转型培训，设计师自发学习</div>
+          </div>
+          <div class="meituan-detail-item">
+            <div class="meituan-detail-dim">设计体系</div>
+            <div class="meituan-detail-val">AI 规范雏形，尚未形成完整 AX 体系</div>
+          </div>
+          <div class="meituan-detail-item">
+            <div class="meituan-detail-dim">产品覆盖</div>
+            <div class="meituan-detail-val">Wow、AI 助手等产品缺乏 AX 设计支撑</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CTA
+══════════════════════════════════════════ -->
+<section class="cta-section">
+  <div style="font-family:'Space Mono',monospace; font-size:11px; letter-spacing:4px; color:#AAAABC; text-transform:uppercase; margin-bottom:16px;">⚠ URGENCY ALERT</div>
+  <h2 class="cta-title">
+    <span style="font-size:clamp(18px,2.2vw,28px); font-weight:400; color:#888; display:block; letter-spacing:0; margin-bottom:8px;">窗口期正在关闭</span>
+    <em>每晚一步，差距翻倍</em>
+  </h2>
+  <p class="cta-sub">
+    AX 人才的培养周期至少需要 6–12 个月。
+    国外大厂已领先 2–3 年，国内竞争对手正在加速。
+    美团 AI 产品的体验质量，取决于现在是否开始行动。
+  </p>
+  <div class="cta-stats">
+    <div class="cta-stat">
+      <span class="cta-stat-num">9+</span>
+      <div class="cta-stat-label">竞争对手已开放<br>AX 相关岗位数</div>
+    </div>
+    <div class="cta-stat">
+      <span class="cta-stat-num">3yr</span>
+      <div class="cta-stat-label">国外大厂领先<br>美团的时间差</div>
+    </div>
+    <div class="cta-stat" style="background:#FFF5F5;">
+      <span class="cta-stat-num" style="color:#C41A1A; font-size:48px;">0</span>
+      <div class="cta-stat-label" style="color:#C41A1A; font-weight:600;">美团当前<br>AX 专项岗位</div>
+    </div>
+    <div class="cta-stat">
+      <span class="cta-stat-num">12mo</span>
+      <div class="cta-stat-label">AX 人才培养<br>最短周期</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SOURCE FOOTER
+══════════════════════════════════════════ -->
+<div class="source-footer">
+  <div class="source-title">参考来源 · References</div>
+  <div class="source-list">
+    <div class="source-item">📄 <a href="https://johnmaeda.medium.com/design-in-tech-report-2026-from-ux-to-ax-f9d83164f4d2" target="_blank">Design in Tech Report 2026 — John Maeda</a></div>
+    <div class="source-item">📄 <a href="https://pair.withgoogle.com/guidebook/" target="_blank">Google PAIR Guidebook</a></div>
+    <div class="source-item">📄 <a href="https://learn.microsoft.com/en-us/microsoft-cloud/dev/copilot/isv/ux-guidance" target="_blank">Microsoft UX for Generative AI</a></div>
+    <div class="source-item">📄 <a href="https://developer.apple.com/design/human-interface-guidelines/generative-ai/" target="_blank">Apple HIG — Generative AI</a></div>
+    <div class="source-item">📄 <a href="https://www.salesforce.com/design/" target="_blank">Salesforce Design — Agentic UX</a></div>
+    <div class="source-item">📄 <a href="https://tdesign.tencent.com/chat/overview" target="_blank">腾讯 TDesign Chat</a></div>
+    <div class="source-item">📄 <a href="https://github.com/ant-design/x" target="_blank">阿里 Ant Design X</a></div>
+    <div class="source-item">📄 <a href="https://agentexperience.ax/research/ax-the-next-evolution-in-ux/" target="_blank">AX: The Next Evolution in UX</a></div>
+    <div class="source-item">📄 <a href="https://10clouds.com/blog/a-i/agentic-experience-ax-the-ux-of-agentic-ai-era/" target="_blank">Agentic Experience (AX) Complete Guide</a></div>
+    <div class="source-item">📄 <a href="https://www.francescatabor.com/articles/2025/2/8/the-future-of-ux-transitioning-from-ux-designer-to-ai-agent-experience-ax-designer" target="_blank">Transitioning from UX to AX Designer</a></div>
+    <div class="source-item">🔗 招聘数据来源：LinkedIn、各公司官方招聘平台、猎聘、BOSS直聘（2024–2026）</div>
+  </div>
+</div>
+
+</div><!-- /page-wrap -->
+</body>
+</html>
